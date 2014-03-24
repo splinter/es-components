@@ -1,0 +1,6 @@
+<module name="comp-layout-singlecolfluid" xmlns="http://wso2.org/projects/jaggery/module.xml">
+    <script>
+        <name>main.js</name>
+        <path>scripts/main.js</path>
+    </script>
+</module>
