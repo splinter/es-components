@@ -4,13 +4,14 @@ Description: This module implements a single colument fluid layout.
 **/
 var log = new Log('comp-layout-singlecolfluid');
 var carbon = require('carbon');
-var pagePartial = new File(carbon.server.home + '/modules/comp-layout-singlecolfluid/scripts/partials/single-col-fluid.hbs');
-
+var basePath = carbon.server.home + '/modules/comp-layout-singlecolfluid/scripts/';
+var pagePartial = new File(basePath + '/partials/single-col-fluid.hbs');
+var cssBootStrap = new File(basePath + '/css/bootstrap.min.css');
+var cssBootStrapResponsive = new File(basePath + '/css/bootstrap-responsive.min.css');
 var component = function() {
     var handle = function(context, handlers) {
         var log = new Log('comp-layout-singlecolfluid');
-        log.info('Entered layout component');
-        log.info(pagePartial.isExists());
+        log.info('Creating layout');
         var data = context.data;
         var layout = {
             title: [],
@@ -38,8 +39,12 @@ var component = function() {
         data.page = {};
         data.page.id = 'single-col-fluid';
         data.page.partial = pagePartial;
+        //Add the CSS dependecies
+        data.page.css = [];
+        data.page.css.push(cssBootStrap);
+        data.page.css.push(cssBootStrapResponsive);
         data.page.layout = layout;
-        log.info('Finished laying out component');
+        log.info('Finished creating layout');
         handlers();
     };
     return handle;
