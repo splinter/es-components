@@ -14,9 +14,11 @@ var component = function() {
         log.info('Creating layout');
         var data = context.data;
         var layout = {
-            title: [],
+            header: [],
+            ribbon: [],
+            leftnav: [],
             body: [],
-            footer: []
+            footer: [],
         };
         var region;
         var addToLayout = function(layoutTemplate, region, widgetName, widget) {
