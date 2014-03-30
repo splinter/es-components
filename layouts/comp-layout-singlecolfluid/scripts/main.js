@@ -9,7 +9,7 @@ var carbon = require('carbon');
 var utils=require('utils');
 
 var basePath = carbon.server.home + '/modules/comp-layout-singlecolfluid/scripts/';
-var css=utils.file.getDirectoryContents(new File(basePath+'css'));
+var css=utils.file.getAllFiles(new File(basePath+'css'));//utils.file.getDirectoryContents(new File(basePath+'css')); 
 var partials=utils.file.getDirectoryContents(new File(basePath+'partials'));
 
 //var pagePartial = new File(basePath + '/partials/single-col-fluid.hbs');
@@ -60,20 +60,16 @@ var component = function() {
 
 
         var page=data['_page']={};
+        var server=data['_server'];
+
         page.mainPartial='single-col-fluid';
         page.partials=partials;
-        page.css=css;
+        //page.css=css;
         page.layout=layout;
         
 
-        //data.page = {};
-        //data.page.id = 'single-col-fluid';
-        //data.page.partial = pagePartial;
-        //Add the CSS dependecies
-        //data.page.css = [];
-        //data.page.css.push(cssBootStrap);
-        //data.page.css.push(cssBootStrapResponsive);
-        //data.page.layout = layout;
+        server.res.css.push(css);
+
         log.info('Finished creating layout');
         handlers();
     };
