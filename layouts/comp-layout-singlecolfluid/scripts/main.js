@@ -11,7 +11,7 @@ var utils=require('utils');
 var basePath = carbon.server.home + '/modules/comp-layout-singlecolfluid/scripts/';
 var css=utils.file.getAllFiles(new File(basePath+'css'));//utils.file.getDirectoryContents(new File(basePath+'css')); 
 var partials=utils.file.getDirectoryContents(new File(basePath+'partials'));
-
+var img=utils.file.getAllFiles(new File(basePath+'img'));
 //var pagePartial = new File(basePath + '/partials/single-col-fluid.hbs');
 //var cssBootStrap = new File(basePath + '/css/bootstrap.min.css');
 //var cssBootStrapResponsive = new File(basePath + '/css/bootstrap-responsive.min.css');
@@ -60,7 +60,7 @@ var component = function() {
 
 
         var page=data['_page']={};
-        var server=data['_server'];
+        var app=data['_app'];
 
         page.mainPartial='single-col-fluid';
         page.partials=partials;
@@ -68,7 +68,8 @@ var component = function() {
         page.layout=layout;
         
 
-        server.res.css.push(css);
+        app.publicDir.css.push(css);
+        app.publicDir.img.push(img);
 
         log.info('Finished creating layout');
         handlers();
