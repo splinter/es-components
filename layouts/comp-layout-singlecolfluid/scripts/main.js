@@ -60,8 +60,8 @@ var component = function() {
         };
 
 
-        var page=data['_page']={};
-        var app=data['_app'];
+        var page=data['_'].page;
+        var app=data['_'].app;
 
         page.mainPartial='single-col-fluid';
         page.partials=partials;
